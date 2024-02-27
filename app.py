@@ -17,9 +17,7 @@ db.init_app(app)
 def add_cors_headers(response):
     frontend_domains = [
         'http://localhost:3000',
-        'https://www.enetworksagencybanking.com.ng',
-        'https://enetworks-update.vercel.app',
-        'https://jobs-admin.vercel.app'
+        'https://www.rannq.com'
     ]
 
     origin = request.headers.get('Origin')
