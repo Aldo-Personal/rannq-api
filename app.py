@@ -175,13 +175,14 @@ def signup_post():
                 f"Subscription Creation Response Body: {subscription_response.text}")
 
         # Return a success response
-        return jsonify({
-            "message": "User created successfully",
-            "seat_id": seat_id,
-            "user_id": new_user.id,
-            "rannex_user_id": rainex_response.json().get('id'),
-            "subscription_id": subscription_response.json().get('id')
-        })
+        # return jsonify({
+        #     "message": "User created successfully",
+        #     "seat_id": seat_id,
+        #     "user_id": new_user.id,
+        #     "rannex_user_id": rainex_response.json().get('id'),
+        #     "subscription_id": subscription_response.json().get('id')
+        # })
+        return redirect('http://reviews.rannq.com/')
 
     except Exception as e:
         # Handle exceptions
