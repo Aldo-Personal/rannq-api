@@ -32,9 +32,9 @@ class ApplicationConfig:
     DATABASE_ENGINE = create_engine(SQLALCHEMY_DATABASE_URI)
     SESSION_TYPE = os.environ.get("SESSION_TYPE")
     REDIS_URL = "redis://default:WrwSdqAH5iITwzhp8APu@containers-us-west-207.railway.app:6006"
-    # SESSION_REDIS = redis.from_url(REDIS_URL)
+    SESSION_REDIS = redis.from_url(REDIS_URL)
     SESSION_KEY_PREFIX = os.environ.get("SESSION_KEY_PREFIX")
-    SESSION_REDIS = redis_client
+    # SESSION_REDIS = redis_client
     SESSION_PERMANENT = os.environ.get("SESSION_PERMANENT")
     SESSION_USE_SIGNER = os.environ.get("SESSION_USE_SIGNER")
     PERMANENT_SESSION_LIFETIME = 86400
