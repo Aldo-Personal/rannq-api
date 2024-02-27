@@ -49,22 +49,20 @@ def handle_errors(err):
 @app.route('/signup', methods=['POST'])
 def signup_post():
     try:
-        data = request.json
-        hashed_password = bcrypt_sha256.hash(data['password'])
+        data = request.form
+        # hashed_password = bcrypt_sha256.hash(data['password'])
+        firstname = data.get("firstname")
+        lastname = data.get("lastname")
+        email = data.get("email")
+        phone = data.get("phone")
+        company = data.get("company")
 
         new_user = User(
-            firstname=data['firstname'],
-            lastname=data['lastname'],
-            email=data['email'],
-            phone=data['phone'],
-            company=data['company'],
-            house=data['house'],
-            street=data['street'],
-            apartment=data['apartment'],
-            city=data['city'],
-            zipCode=data['zipCode'],
-            country=data['country'],
-            vatNumber=data['vatNumber']
+            firstname=firstname,
+            lastname=lastname,
+            email=email,
+            phone=phone,
+            company=company
         )
 
         db.session.add(new_user)
