@@ -7,6 +7,7 @@ from config import ApplicationConfig
 app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
 db.init_app(app)
+
 # with app.app_context():
 #     db.drop_all()
 #     db.create_all()
@@ -45,28 +46,24 @@ def signup_post():
 
         print(f"User created successfully. User ID: {new_user.id}")
 
-        # Redirect based on the selected plan
-        # Starter plans
-        if plan == 'RMS1000M':
-            return redirect('https://buy.stripe.com/fZefZecfHcVbeLC8wy')
-        # Starter Yearly
-        elif plan == 'RMS1000Y':
-            return redirect('https://buy.stripe.com/aEU4gw4Nf08peLC8wx')
+        # Define a default redirect URL in case no plan is selected
+        redirect_url = '/'
 
-        # Growth plans
-        elif plan == 'RMG1000M':
-            return redirect('https://buy.stripe.com/bIYdR6enPcVb46Y148')
-        # Growth Yearly
-        elif plan == 'RMG1000Y':
-            return redirect('https://buy.stripe.com/4gw4gw5RjcVb5b2dQT')
+        # Map plans to their respective URLs
+        plan_urls = {
+            'RMS1000M': 'https://buy.stripe.com/fZefZecfHcVbeLC8wy',
+            'RMS1000Y': 'https://buy.stripe.com/aEU4gw4Nf08peLC8wx',
+            'RMG1000M': 'https://buy.stripe.com/bIYdR6enPcVb46Y148',
+            'RMG1000Y': 'https://buy.stripe.com/4gw4gw5RjcVb5b2dQT',
+            'RMP1000M': 'https://buy.stripe.com/aEU14kcfH1ct7ja288',
+            'RMP1000Y': 'https://buy.stripe.com/14kdR61B33kB6f6bIN',
+        }
 
-        # Profesional plans
-        elif plan == 'RMP1000M':
-            return redirect('https://buy.stripe.com/aEU14kcfH1ct7ja288')
-        elif plan == 'RMP1000Y':
-            return redirect('https://buy.stripe.com/14kdR61B33kB6f6bIN')
+        # Check if the selected plan exists in the mapping
+        if plan in plan_urls:
+            redirect_url = plan_urls[plan]
 
-        # Add more conditions for other plans as needed
+        return redirect(redirect_url)  # Redirect to the appropriate URL
 
     except Exception as e:
         print(f"Exception: {e}")
