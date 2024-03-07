@@ -22,6 +22,11 @@ def handle_errors(err):
     return errors
 
 
+def clean_item_price_id(item_price_id):
+    # Remove any quotes from the item_price_id
+    return item_price_id.strip('"\'')
+
+
 @app.route('/signup', methods=['POST'])
 def signup_post():
     try:
@@ -31,7 +36,7 @@ def signup_post():
         email = data.get("email")
         phone = data.get("phone")
         company = data.get("company")
-        plan = data.get("plan")
+        plan = clean_item_price_id(data.get("itemPriceId"))
 
         new_user = User(
             firstname=firstname,
@@ -59,7 +64,7 @@ def signup_post():
             'RMP1000Y': 'https://buy.stripe.com/14kdR61B33kB6f6bIN',
         }
 
-        # Check if the selected plan exists in the mapping
+        # Check if the cleaned plan exists in the mapping
         if plan in plan_urls:
             redirect_url = plan_urls[plan]
 
