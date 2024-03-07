@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, redirect
+from flask import Flask, request, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 from models import User, db
@@ -7,6 +7,9 @@ from config import ApplicationConfig
 app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
 db.init_app(app)
+# with app.app_context():
+#     db.drop_all()
+#     db.create_all()
 
 
 def handle_errors(err):
@@ -64,8 +67,6 @@ def signup_post():
             return redirect('https://buy.stripe.com/14kdR61B33kB6f6bIN')
 
         # Add more conditions for other plans as needed
-
-        return jsonify({"message": "User created successfully", "user_id": new_user.id})
 
     except Exception as e:
         print(f"Exception: {e}")
