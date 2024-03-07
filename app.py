@@ -45,23 +45,23 @@ def signup_post():
         # Redirect based on the selected plan
         # Starter plans
         if plan == 'RMS1000M':
-            return redirect('https://buy.stripe.com/test_bIYdTzgqJfKF8jCeUY')
+            return redirect('https://buy.stripe.com/fZefZecfHcVbeLC8wy')
         # Starter Yearly
         elif plan == 'RMS1000Y':
-            return redirect('https://buy.stripe.com/test_7sI02Jcat9mhfM4006')
+            return redirect('https://buy.stripe.com/aEU4gw4Nf08peLC8wx')
 
         # Growth plans
         elif plan == 'RMG1000M':
-            return redirect('https://buy.stripe.com/test_28og1HfmFfKF8jCeV1')
+            return redirect('https://buy.stripe.com/bIYdR6enPcVb46Y148')
         # Growth Yearly
         elif plan == 'RMG1000Y':
-            return redirect('https://buy.stripe.com/test_8wM3eV8YheGB2Zi28g')
+            return redirect('https://buy.stripe.com/4gw4gw5RjcVb5b2dQT')
 
         # Profesional plans
         elif plan == 'RMP1000M':
-            return redirect('https://buy.stripe.com/test_fZe02J8Yh6a5czS009')
+            return redirect('https://buy.stripe.com/aEU14kcfH1ct7ja288')
         elif plan == 'RMP1000Y':
-            return redirect('https://buy.stripe.com/test_8wMdTzdex9mh8jC3cm')
+            return redirect('https://buy.stripe.com/14kdR61B33kB6f6bIN')
 
         # Add more conditions for other plans as needed
 
