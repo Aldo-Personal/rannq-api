@@ -3,10 +3,13 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 from models import User, db
 from config import ApplicationConfig
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
+migrate = Migrate(app, db)
 db.init_app(app)
+
 
 # with app.app_context():
 #     db.drop_all()
@@ -56,12 +59,14 @@ def signup_post():
 
         # Map plans to their respective URLs
         plan_urls = {
-            'RMS1000M': 'https://buy.stripe.com/fZefZecfHcVbeLC8wy',
-            'RMS1000Y': 'https://buy.stripe.com/aEU4gw4Nf08peLC8wx',
-            'RMG1000M': 'https://buy.stripe.com/bIYdR6enPcVb46Y148',
-            'RMG1000Y': 'https://buy.stripe.com/4gw4gw5RjcVb5b2dQT',
-            'RMP1000M': 'https://buy.stripe.com/aEU14kcfH1ct7ja288',
-            'RMP1000Y': 'https://buy.stripe.com/14kdR61B33kB6f6bIN',
+            'RMS1000M': 'https://buy.stripe.com/9AQ6oE1B3g7nbzq5ku',
+            'RMS1000Y': 'https://buy.stripe.com/bIYdR6frT4oF46Y4gr',
+            # Growth
+            'RMG1000M': 'https://buy.stripe.com/aEU8wMenP08peLCfZ4',
+            'RMG1000Y': 'https://buy.stripe.com/9AQeVa0wZf3j46Y4gn',
+            # Professional
+            'RMP1000M': 'https://buy.stripe.com/cN2fZe6Vn7AR7ja6ow',
+            'RMP1000Y': 'https://buy.stripe.com/4gw9AQenP5sJ46Y8wF',
         }
 
         # Check if the cleaned plan exists in the mapping
